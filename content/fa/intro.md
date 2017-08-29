@@ -1,7 +1,8 @@
 مقدمه
 ============
 
-در سالهای اخیر نرم افزار عموما به عنوان یک سرویس ارائه میشود که با عناوینی مانیید وب اپلیکیشن و یا نرما افزار به عنوان سرویس مورد خطاب قرار میگیرند. tweleve-factor یک متدولوژی برای توسعه این نوع نرم افزارها است.
+در سالهای اخیر نرم افزارها عموما به عنوان یک سرویس ارائه میشود که با عناوینی مانند وب اپلیکیشن و یا نرم افزار به عنوان سرویس مورد خطاب قرار میگیرند.
+tweleve-factor یک متدولوژی برای توسعه این نوع نرم افزارها است.
 
 In the modern era, software is commonly delivered as a service: called *web apps*, or *software-as-a-service*.  The twelve-factor app is a methodology for building software-as-a-service apps that:
 
