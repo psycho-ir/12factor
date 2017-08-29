@@ -26,8 +26,10 @@ end
 get '/' do
   erb :home
 end
-
+RTL_LANGS = %w( fa )
 TOC = %w(codebase dependencies config backing-services build-release-run processes port-binding concurrency disposability dev-prod-parity logs admin-processes)
+
+
 
 get '/:factor' do |factor|
   halt 404 unless TOC.include?(factor)
@@ -64,6 +66,9 @@ helpers do
         "<a href=\"#{path_prefix}/#{factor}\">#{I18n.t(:language, :locale => locale)}</a>"
       end
     }.join(" | ")
+  end
+  def rtl_lang?(lang)
+    RTL_LANGS.include?(lang.to_s)
   end
 end
 
