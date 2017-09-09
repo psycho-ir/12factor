@@ -2,14 +2,12 @@
 ============
 
 در سالهای اخیر نرم افزارها عموما به عنوان یک سرویس ارائه میشود که با عناوینی مانند وب اپلیکیشن و یا نرم افزار به عنوان سرویس مورد خطاب قرار میگیرند.
-tweleve-factor یک متدولوژی برای توسعه این نوع نرم افزارها است.
+tweleve-factor یک متدولوژی برای توسعه این نوع نرم افزارها است که:
 
-In the modern era, software is commonly delivered as a service: called *web apps*, or *software-as-a-service*.  The twelve-factor app is a methodology for building software-as-a-service apps that:
+* از فرمتهای اعلانی برای راه اندازی اتوماسیون استفاده میکنند که موجب میشود توسعه دهندگان جدید با صرف هزینه و زمان کمتری بتوانند به پیشبرد پروژه کمک کنند.
+* قراداد شفافی با سیستم عاملی که از آن بهره میبرند دارند تا بتوانند بیشینه قابل حمل بودن ممکن را به دست آورند.
+* مناسب برای استقرار بر روی سکوهای ابری هستند. که موجب میشود نیاز به مدیریت سرورها تا حد ممکن کاهش بیابد
+* کاهش اختلافات موجود میان محیط توسعه و محیط عملیاتی که موجب میشود بتوان continuous deploument  را پیاده سازی نمود تا حداکثر چابکی ممکن را به دست آورد
+* و میتوان به مقیاس نرم افزار را تغییر داد بدون اینکه نیاز بع تغییرات چشم گیری در ابزارها, معماری و یا شیوه توسعه باشد
 
-* Use **declarative** formats for setup automation, to minimize time and cost for new developers joining the project;
-* Have a **clean contract** with the underlying operating system, offering **maximum portability** between execution environments;
-* Are suitable for **deployment** on modern **cloud platforms**, obviating the need for servers and systems administration;
-* **Minimize divergence** between development and production, enabling **continuous deployment** for maximum agility;
-* And can **scale up** without significant changes to tooling, architecture, or development practices.
-
-The twelve-factor methodology can be applied to apps written in any programming language, and which use any combination of backing services (database, queue, memory cache, etc).
+این متدولوژی قابل اعمال بر روی اپلیکیشنهایی است که با هر زبانی توشته شده اند و از هر ترکیبی از سرویسهای ممکن استفاده میکنند(پایگاه داده ها, صف, کش و ... ).
