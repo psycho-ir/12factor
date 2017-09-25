@@ -1,22 +1,43 @@
-## III. Config
-### Store config in the environment
+## III. پیکربندی یا کانفیگ
+### پیکربندی را در Environment نگه دارید
 
-An app's *config* is everything that is likely to vary between [deploys](./codebase) (staging, production, developer environments, etc).  This includes:
+*پیکربندی* یک App هر چیزی است که احتمالا بین [Deploymentهای](./codebase) مختلف متفاوت است.( مثل Staging ، محیط اجرا, محیط توسعه و غیره) که شامل این موارد می‌شود:
 
-* Resource handles to the database, Memcached, and other [backing services](./backing-services)
-* Credentials to external services such as Amazon S3 or Twitter
-* Per-deploy values such as the canonical hostname for the deploy
+* منابع مرتبط با دیتابیس، Memcached و غیر [backing services](./backing-services)
+* مجوزهای مربوط به سرویس های خارجی مثل Amazon S3 یا Twitter
+* مقادیر Pre-deploy مثل Hostname محل Deploy 
 
-Apps sometimes store config as constants in the code.  This is a violation of twelve-factor, which requires **strict separation of config from code**.  Config varies substantially across deploys, code does not.
+Appها گاهی پیکربندی‌ها را به صورت مقادیر ثابت داخل کد نگه میدارند.این نقض  tweleve-factor  است، و باید **پیکربندی‌ها را کاملا از کد جدا کرد**. اساسا پیکربندی‌ها بین deployment‌های مختلف متفاوت‌اند در حالی که کد همیشه یکسان است.
 
-A litmus test for whether an app has all config correctly factored out of the code is whether the codebase could be made open source at any moment, without compromising any credentials.
+یک تست litmus برای نشان دادن این که آیا یک app به درستی تمام پیکربندی‌ها را از کد جدا کرده این است که آیا می‌توان در هر لحظه کد را متن‌باز کرد بدون اینکه هیچ مجوزی افشا شود.
 
-Note that this definition of "config" does **not** include internal application config, such as `config/routes.rb` in Rails, or how [code modules are connected](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html) in [Spring](http://spring.io/).  This type of config does not vary between deploys, and so is best done in the code.
+دقت کنید که این توضیح در مورد پیکربندی شامل پیکربندی‌های داخلی application **نمی‌شوند**، مثل `config/routes.rb` در پروژه‌های Rails یا [چگونگی اتصال ماژول ها](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html) در [Spring](http://spring.io/).این نوع از پیکربندی‌ها بین deployهای مختلف متفاوت نیستند، و بهتر است داخل کد قرار بگیرند.
 
-Another approach to config is the use of config files which are not checked into revision control, such as `config/database.yml` in Rails.  This is a huge improvement over using constants which are checked into the code repo, but still has weaknesses: it's easy to mistakenly check in a config file to the repo; there is a tendency for config files to be scattered about in different places and different formats, making it hard to see and manage all the config in one place.  Further, these formats tend to be language- or framework-specific.
+روش دیگر استفاده از فایل‌های پیکربندی یا Config files است که البته داخل revision control نگهداری نمی‌شوند, مثل `config/database.yml` در Rails.
+این روش به مراتب بهتر از نگهداری مقادیر ثابتی است که داخل Code repo قرار میگیرند اما هنوز هم این روش ضعف‌هایی دارد: به سادگی ممکن است فایل کانفیگ اشتباها داخل Code repo قرار بگیرد; به مرور ممکن است کل پروژه پر از فایل‌های پیکربندی مختلف در مکان‌های مختلف و با فرمت‌های مختلف شود که در نتیجه مدیریت آن‌ها را سخت می‌کند. به علاوه، این فرمت ها معمولا مختص یک زبان خاص یا فریمورک خاص هستند و با هم متفاوت‌اند.
 
-**The twelve-factor app stores config in *environment variables*** (often shortened to *env vars* or *env*).  Env vars are easy to change between deploys without changing any code; unlike config files, there is little chance of them being checked into the code repo accidentally; and unlike custom config files, or other config mechanisms such as Java System Properties, they are a language- and OS-agnostic standard.
+** app های twelve-factor  پیکربندی را در *environment variable ها* نگه می‌دارند.**(معمولا به طور کوتاه شده *env vars* یا *env* هم گفته می‌شود و ما از واژه متغیر محیطی استفاده می‌کنیم). متغیر‌های محیطی به سادگی بین deployها تغییر میکنند و نیازی به تغییر کد نیست; برخلاف فایل‌های پیکربندی, شانس خیلی کمی است که آنها اتفاقی داخل Code repo قرار بگیرند, و برخلاف فایل‌های پیکربندی دلخواه زبان‌ها و فریمورک‌ها این نوع پیکربندی استانداردی است که همه زبان‌ها و سیستم‌عامل‌ها پشتیبانی می‌کنند.
 
-Another aspect of config management is grouping.  Sometimes apps batch config into named groups (often called "environments") named after specific deploys, such as the `development`, `test`, and `production` environments in Rails.  This method does not scale cleanly: as more deploys of the app are created, new environment names are necessary, such as `staging` or `qa`.  As the project grows further, developers may add their own special environments like `joes-staging`, resulting in a combinatorial explosion of config which makes managing deploys of the app very brittle.
+جنبه‌ی دیگر مدیریت پیکربندی، گروه‌بندی است.گاها appها پیکربندی‌ها را در گروه‌هایی با نام مشخص قرار می‌دهد.(معمولا Environment به آنها اطلاق می‌شود) که این نام‌گذاری بر اساس یک deploy بخصوص است, مثل محیط‌های `development`, `test`, و `اجرا`  در Rails.این روش به خوبی مقیاس‌پذیر نیست: به مرور deploy های مختلف دیگری هم ایجاد می‌شوند مثل `staging` یا `qa` و بعد از مدتی توسعه‌دهنده ها ممکن است پیکربندی‌های خاص خودشان را هم اضافه کنند مثل `Samans-staging`، در نتیجه موجب می‌شود تعداد فایل‌های کانفیگ زیاد شود و در Deployment مشکل ایجاد کنند.
 
-In a twelve-factor app, env vars are granular controls, each fully orthogonal to other env vars.  They are never grouped together as "environments", but instead are independently managed for each deploy.  This is a model that scales up smoothly as the app naturally expands into more deploys over its lifetime.
+
+در یک app مطابق با twelve-factor ، متغیر‌های محیطی ابزار کنترلی منعطفی هستند که هر یک به طور کامل با بقیه سازگاری دارد.آن‌ها هرگز با هم تشکیل یک گروه بخصوص برای یک محیط بخصوص را نمی‌دهند، در عوض به صورت مستقل برای هر deploy مدیریت می‌شوند.
+این مدل همین‌طور که app به صورت طبیعی بین deploy های متعدد در طول عمر خود بزرگ می‌شود به نرمی مقیاس‌پذیر است.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
