@@ -1,4 +1,4 @@
-The Twelve Factors
+فاکتور‌های دوازده‌گانه
 ==================
 
 ## [I. Codebase](./codebase)
@@ -7,8 +7,8 @@ The Twelve Factors
 ## [II. Dependencies](./dependencies)
 ### Explicitly declare and isolate dependencies
 
-## [III. Config](./config)
-### Store config in the environment
+## [III. پیکربندی‌ها](./config)
+### پیکربندی‌ها و تنظیمات متغیر پروژه(آن‌هایی که بین دپلوی‌های مختلف ممکن است تغییر کنند) در Environment نگهدارید.
 
 ## [IV. Backing services](./backing-services)
 ### Treat backing services as attached resources
