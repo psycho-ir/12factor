@@ -1,8 +1,8 @@
 فاکتور‌های دوازده‌گانه
 ==================
 
-## [I. Codebase](./codebase)
-### One codebase tracked in revision control, many deploys
+## [I. کد‌های پروژه](./codebase)
+### یک کدبیس در یک سیستم کنترل ورژن اما چندین دپلوی
 
 ## [II. Dependencies](./dependencies)
 ### Explicitly declare and isolate dependencies
