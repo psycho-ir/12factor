@@ -1,7 +1,9 @@
-## II. Dependencies
-### Explicitly declare and isolate dependencies
+## II. وابستگی‌ها
+### صراحتا وابستگی‌ها رو مشخص کنید و آنها را ایزوله نگه دارید
 
-Most programming languages offer a packaging system for distributing support libraries, such as [CPAN](http://www.cpan.org/) for Perl or [Rubygems](http://rubygems.org/) for Ruby.  Libraries installed through a packaging system can be installed system-wide (known as "site packages") or scoped into the directory containing the app (known as "vendoring" or "bundling").
+بیشتر زبان‌های برنامه‌نویسی یک مکانیزم پکیج کردن یا بسته‌بندی کردن فراهم می‌کنند که برنامه‌نویسان بتوانند کتابخانه‌هاشون رو منتشر کنند، مثلا [CPAN](http://www.cpan.org/) برای زبان پرل یا [Rubygems](http://rubygems.org/) برای زبان روبی. کتابخانه‌هایی که توسط این سیستم پکیچینگ نصب می‌شوند می‌توانند به شکل system-wide باشند  (به نام "site packages" هم گفته می‌شود) یا اینکه به طور محدود فقط برای یک app بخصوص در دسترس باشد(به این حالت vendoring یا bundling می‌گویند)
+
+** یک app مطابق قواعد ۱۲گانه هرگز نباید به صورت تلویجی به وجود یک پکیج(یا کتابخانه) system-wide متکی باشد **، در عوض باید وابستگی‌هایش را دقیقا و تماما به وسیله‌ی یک سند ا*علام وابستگی* مشخص کند، علاوه بر این، باید از یک ابزار مناسب جهت *ایزوله کردن وابستگی‌ها* هم استفاده کند تا اطمینان حاصل شود که هیچ وابستگی به طور ضمنی از سیستمی که app روی آن دپلوی شده تامین نمی‌شود.(م. مثلا تصور کنید که app روی یک سروری دپلوی شده و خوب کار میکنه اما روی سرور دوم بعد از دپلوی درست کار نمی‌کند چراکه در سرور اول علاوه بر وابستگی‌هایی که اعلام شده و نصب شده از یک سری وابستگی‌های تلویحی دیگه مثل پکیج‌های system-wide هم استفاده می‌کند این دقیقا مشکل درست ایزوله نکردن است)
 
 **A twelve-factor app never relies on implicit existence of system-wide packages.**  It declares all dependencies, completely and exactly, via a *dependency declaration* manifest.  Furthermore, it uses a *dependency isolation* tool during execution to ensure that no implicit dependencies "leak in" from the surrounding system.  The full and explicit dependency specification is applied uniformly to both production and development.
 
