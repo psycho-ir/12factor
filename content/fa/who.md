@@ -1,4 +1,4 @@
-Who should read this document?
+چه کسانی به خواندن این مستندات نیاز دارند؟
 ==============================
 
-Any developer building applications which run as a service.  Ops engineers who deploy or manage such applications.
+هر توسعه‌دهنده‌ای که applicationای می‌نویسد که به صورت سرویس اجرا می‌شود. Ops Engineer هایی که چنین applicationهایی را دپلوی یا مدیریت می‌کنند

@@ -1,18 +1,19 @@
-## I. Codebase
-### One codebase tracked in revision control, many deploys
+## I. کدبیس(منظور کد‌های پروژه است)
+### یک کدبیس با یک سیستم کنترل ورژن نگه‌داری و کنترل می‌شود و بار‌ها دپلوی می‌شود.
 
-A twelve-factor app is always tracked in a version control system, such as [Git](http://git-scm.com/), [Mercurial](https://www.mercurial-scm.org/), or [Subversion](http://subversion.apache.org/).  A copy of the revision tracking database is known as a *code repository*, often shortened to *code repo* or just *repo*.
+یک application که فاکتور‌های دوازده‌گانه را رعایت کرده است همواره توسط یک سیستم کنترل ورژن مثل [Git](http://git-scm.com/), [Mercurial](https://www.mercurial-scm.org/)  یا [Subversion](http://subversion.apache.org/) مورد کنترل قرار می‌گیرد.
+هر کپی از دیتابیس آن سیستم کنترل سورس‌کد(در گیت منظور همان دایرکتوری .git است) یک مخزن‌کد یا به اختصار Code Repo یا فقط Repo نامیده می‌شود.(از این به بعد به مخزن کد ریپو می‌گوییم)
 
-A *codebase* is any single repo (in a centralized revision control system like Subversion), or any set of repos who share a root commit (in a decentralized revision control system like Git).
+هر ریپو چه به صورت مترکز مثل Subversion یا غیرمترمکز مثل Git یک *کدبیس* نامیده می‌شود.
 
-![One codebase maps to many deploys](/images/codebase-deploys.png)
+![هر کد بیس چندین بار ممکن است دپلوی شود](/images/codebase-deploys.png)
 
-There is always a one-to-one correlation between the codebase and the app:
+همواره یک رابطه یک‌به‌یک بین کدبیس و app باید وجود داشته باشد:
 
-* If there are multiple codebases, it's not an app -- it's a distributed system.  Each component in a distributed system is an app, and each can individually comply with twelve-factor.
-* Multiple apps sharing the same code is a violation of twelve-factor.  The solution here is to factor shared code into libraries which can be included through the [dependency manager](./dependencies).
+* اگر چندین کدبیس وجود دارد، پس لزوما این یک application  نیست بلکه یک سیستم توزیع شده است. هر کامپوننت در آن سیستم توزیع شده یک app است و هر کدام جداگانه باید از قواعد ۱۲گانه تبعیت کنند.
 
-There is only one codebase per app, but there will be many deploys of the app.  A *deploy* is a running instance of the app.  This is typically a production site, and one or more staging sites.  Additionally, every developer has a copy of the app running in their local development environment, each of which also qualifies as a deploy.
+* یک تخطی از فاکتور‌های ۱۲گانه وقتی است که چندین app یک کد را با هم به اشتراک می‌گذارند. در این مواقع راه حل این است که کد مشترک به یک کتابخانه تبدیل شود، به طوری که توسط [dependency manager](./dependencies) بتوان از آن داخل appها استفاده کرد.
 
-The codebase is the same across all deploys, although different versions may be active in each deploy.  For example, a developer has some commits not yet deployed to staging; staging has some commits not yet deployed to production.  But they all share the same codebase, thus making them identifiable as different deploys of the same app.
+یک *دپلوی* به اجرا کردن یک نسخه از آن app می‌گویند،  از انواع دپلوی می‌توان به دپلوی در محیط پروداکشن( محیط واقعیی که app قرار است سرویس اصلی خود را ارائه دهد) و یا دپلوی در یک یا چند محیط Staging(محیط Staging محیطیست کاملا مشابه با محیط پروداکشن که تست‌ها فنی و ارائه‌های نهایی به صاحب محصول در آن محیط صورت می‌گیرد) اشاره کرد.ضمنا به جز این‌ها هر توسعه‌دهنده هم یک نسخه از app را در محیط توسعه‌ی خودش دارد که آنها هم هر کدام یک دپلوی محسوب می‌شوند. همان طور که قبلا گفته شد فقط یک کدبیس به ازای هر app وجود دارد، اما همان app چندین بار قرار است دپلوی شود.
 
+کدبیس باید بین تمام دپلوی‌ها یکسان باشد، البته به استثنای وقتی که نسخه‌های (ورژن‌ها) مختلفی جداگانه دپلوی شده باشند، به عنوان مثال، یک توسعه‌دهنده ممکن است یک تعدادی کامیت کرده باشد که هنوز روی محیط Staging دپلوی نشده باشد و یا نسخه‌ی در حال اجرا در Staging حاوی یک سری کامیت باشد که هنوز روی پروداکشن دپلوی نشده باشد اما همه‌ی آنها یک کدبیس را به اشتراک گذاشتند و این یعنی این دپلوی‌ها همگی برای یک app هستند.
