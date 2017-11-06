@@ -10,8 +10,8 @@
 ## [III. پیکربندی‌ها](./config)
 ### پیکربندی‌ها و تنظیمات متغیر پروژه(آن‌هایی که بین دپلوی‌های مختلف ممکن است تغییر کنند) در Environment نگهدارید.
 
-## [IV. Backing services](./backing-services)
-### Treat backing services as attached resources
+## [IV. سرویس‌های پشتی](./backing-services)
+### با سرویسهای پشتی همانند منابع متصل برخورد کنید.
 
 ## [V. Build, release, run](./build-release-run)
 ### Strictly separate build and run stages
