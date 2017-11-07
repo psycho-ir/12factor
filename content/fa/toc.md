@@ -13,7 +13,7 @@
 ## [IV. سرویس‌های پشتی](./backing-services)
 ### با سرویسهای پشتی همانند منابع متصل برخورد کنید.
 
-## [V. Build, release, run](./build-release-run)
+## [V. ساخت، انتشار و اجرا](./build-release-run)
 ### Strictly separate build and run stages
 
 ## [VI. Processes](./processes)
