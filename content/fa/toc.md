@@ -4,20 +4,20 @@
 ## [I. کد‌های پروژه](./codebase)
 ### یک کدبیس در یک سیستم کنترل ورژن اما چندین دپ
 
-## [II. Dependencies](./dependencies)
-### Explicitly declare and isolate dependencies
+## [II. وابستگی‌ها ](./dependencies)
+### وابستگی‌ها باید صراحتا تعریف شوند و ایزوله نگهداری شوند
 
 ## [III. پیکربندی‌ها](./config)
 ### پیکربندی‌ها و تنظیمات متغیر پروژه(آن‌هایی که بین دپلوی‌های مختلف ممکن است تغییر کنند) در Environment نگهدارید.
 
-## [IV. Backing services](./backing-services)
-### Treat backing services as attached resources
+## [IV. سرویس‌های پشتی](./backing-services)
+### با سرویسهای پشتی همانند منابع متصل برخورد کنید.
 
-## [V. Build, release, run](./build-release-run)
+## [V. ساخت، انتشار و اجرا](./build-release-run)
 ### Strictly separate build and run stages
 
-## [VI. Processes](./processes)
-### Execute the app as one or more stateless processes
+## [VI. پراسس‌ها](./processes)
+### app را با استفاده از یک یا چند پراسس بدون state اجرا کنید
 
 ## [VII. Port binding](./port-binding)
 ### Export services via port binding
