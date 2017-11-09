@@ -16,8 +16,8 @@
 ## [V. ساخت، انتشار و اجرا](./build-release-run)
 ### Strictly separate build and run stages
 
-## [VI. Processes](./processes)
-### Execute the app as one or more stateless processes
+## [VI. پراسس‌ها](./processes)
+### app را با استفاده از یک یا چند پراسس بدون state اجرا کنید
 
 ## [VII. Port binding](./port-binding)
 ### Export services via port binding
