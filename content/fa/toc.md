@@ -19,8 +19,8 @@
 ## [VI. پراسس‌ها](./processes)
 ### app را با استفاده از یک یا چند پراسس بدون state اجرا کنید
 
-## [VII. Port binding](./port-binding)
-### Export services via port binding
+## [VII. سرویس‌دهی با پورت‌ها](./port-binding)
+### سرویس‌ها را از طریق پورت‌ها ارائه دهید
 
 ## [VIII. Concurrency](./concurrency)
 ### Scale out via the process model
