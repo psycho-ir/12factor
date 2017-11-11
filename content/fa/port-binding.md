@@ -1,14 +1,14 @@
-## VII. Port binding
-### Export services via port binding
+## VII. سرویس‌دهی با پورت‌ها
+### سرویس‌ها را از طریق پورت‌ها ارائه دهید
 
-Web apps are sometimes executed inside a webserver container.  For example, PHP apps might run as a module inside [Apache HTTPD](http://httpd.apache.org/), or Java apps might run inside [Tomcat](http://tomcat.apache.org/).
+اپلیکیشن‌های وب گاهی درون کانتینرهای وبسرور اجرا می‌شوند.برای مثلا اپ‌های PHP می‌توانند به عنوان یک ماژول داخل  [Apache HTTPD](http://httpd.apache.org/)، یا اپ‌های جاوا داخل  [Tomcat](http://tomcat.apache.org/) اجرا شوند.
 
-**The twelve-factor app is completely self-contained** and does not rely on runtime injection of a webserver into the execution environment to create a web-facing service.  The web app **exports HTTP as a service by binding to a port**, and listening to requests coming in on that port.
+** اپی که قواعد ۱۲گانه را رعایت کرده همیشه کاملا خودمختار عمل‌ می‌کند ** و برای ارائه سرویس وب به محیط اجرای فراهم شده توسط یک وبسرور متکی نیست.اپ وب ** خدمات HTTP خود را به عنوان یک سرویس از طریق یک پورت ارائه می‌دهد**، و روی آن پورت گوش می‌دهد و به درخواست‌های HTTP پاسخ می‌دهد.
 
-In a local development environment, the developer visits a service URL like `http://localhost:5000/` to access the service exported by their app.  In deployment, a routing layer handles routing requests from a public-facing hostname to the port-bound web processes.
+در یک محیط توسعه لوکال، یک برنامه‌نویس می‌تواند URL سرویس را مستقیما مشاهده کند، مثلا `http://localhost:5000/` تا به خدمات ارائه شده توسط اپ دسترسی پیدا کند.در محیط دپلوی هم، یک لایه‌ی روتینگ مسئولیت هدایت درخواست‌ها از هاست‌نیم عمومی سرور به پورتی که اپ روی آن سرویس می‌دهد را به عهده می‌گیرد.
 
-This is typically implemented by using [dependency declaration](./dependencies) to add a webserver library to the app, such as [Tornado](http://www.tornadoweb.org/) for Python, [Thin](http://code.macournoyer.com/thin/) for Ruby, or [Jetty](http://www.eclipse.org/jetty/) for Java and other JVM-based languages.  This happens entirely in *user space*, that is, within the app's code.  The contract with the execution environment is binding to a port to serve requests.
+این کار معمولا به این شکل پیاده‌سازی می‌شود که یک کتابخانه‌ی وبسرور از طریق [تعریف وابستگی‌ها](./dependencies) به عنوان وابستگی جدید به اپ اضافه می‌شود (م. تا بتواند سرویس‌های خودش را روی پروتکل HTTP ارائه دهد)، مثلا  [Tornado](http://www.tornadoweb.org/) برای پایتون, [Thin](http://code.macournoyer.com/thin/) برای روبی, یا [Jetty](http://www.eclipse.org/jetty/) برای جاوا یا دیگر زبان‌های بر پایه‌ی JVM. تمام این اتفاقات کاملا در *داخل کد اپ* اتفاق می‌افتد.ارتباط بین اپ و محیط اجرا کاملا روی پورتی که در اختیار اپ قرار گرفته تعریف می‌شود و اپ درخواست‌ها را از طریق همان پورت پاسخ می‌دهد.
 
-HTTP is not the only service that can be exported by port binding.  Nearly any kind of server software can be run via a process binding to a port and awaiting incoming requests.  Examples include [ejabberd](http://www.ejabberd.im/) (speaking [XMPP](http://xmpp.org/)), and [Redis](http://redis.io/) (speaking the [Redis protocol](http://redis.io/topics/protocol)).
+HTTP تنها سرویسی نیست که می‌تواند از طریق پورت به بیرون از اپ ارائه شود.تقریبا تمام انواع نرم‌افزار‌های سرویس‌دهی می‌توانند از همین روش سرویس‌دهی کنند(م. متصل شدن و گوش دادن به یک پورت و پاسخ دادن به درخواست‌ها) به عنوان مثال می‌توان به  [ejabberd](http://www.ejabberd.im/) (با پروتکل [XMPP](http://xmpp.org/)), و [Redis](http://redis.io/) (با پروتکل [Redis protocol](http://redis.io/topics/protocol)) اشاره کرد.
 
-Note also that the port-binding approach means that one app can become the [backing service](./backing-services) for another app, by providing the URL to the backing app as a resource handle in the [config](./config) for the consuming app.
+به این نکته جالب هم توجه کنید که این روش سرویس‌دهی روی پورت می‌تواند منجر به این شود که یک اپ به عنوان  [سرویس پشتی](./backing-services) برای یک اپ دیگر عمل کند، به این شکل که کافیست URL سرویس پشتی را به عنوان آدرس منبع در  [کانفیگ](./config) اپ دیگر قرار دهید.
